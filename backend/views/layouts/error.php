@@ -7,7 +7,6 @@ use backend\assets\AppAsset;
 use yii\helpers\Html;
 
 AppAsset::register($this);
-$this->title = "Error 404";
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

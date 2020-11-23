@@ -21,13 +21,17 @@ use yii\helpers\Html;
                     </div>
                 </h6>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#!">
-                    <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
+                <a class="dropdown-item " href="#!">
+                    <div class="dropdown-item-icon text-gray-700"><i data-feather="settings"></i></div>
                     Account
-                </a><a class="dropdown-item" href="#!">
-                    <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                    Logout
                 </a>
+                <?= Html::a('<div class="dropdown-item-icon text-gray-700"><i class="fas fa-sign-out-alt"></i> </div> Logout', ['logout'], [
+                    'title' => Yii::t('app', 'Hapus data'),
+                    'data' => [
+                        'method' => 'post',
+                    ],
+                    'class' => 'dropdown-item'
+                ]); ?>
             </div>
         </li>
     </ul>

@@ -50,10 +50,20 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
+                // 'view' => '@app/views/site/error.php'
             ],
         ];
     }
-
+    public function actionError()
+    {
+        $exception = Yii::$app->errorHandler->exception;
+        if ($exception instanceof \yii\web\NotFoundHttpException) {
+            // all non existing controllers+actions will end up here
+            return $this->render('pnf'); // page not found
+        } else {
+            return $this->render('error', ['exception' => $exception]);
+        }
+    }
     /**
      * Displays homepage.
      *
@@ -61,14 +71,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $data_content = array(
-            'title' => 'Dashboard'
-        );
-
-        return $this->render('index', [
-            'data_content' => $data_content
-        ]);
+        return $this->render('index');
     }
+
 
     /**
      * Login action.
@@ -81,7 +86,8 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $this->layout = 'blank';
+        // $this->layout = 'blank';
+
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
